@@ -1,0 +1,22 @@
+---
+- name: Deploy Apache Web Server to Multi-Nodes
+  hosts: webservers
+  become: true # Root (Administrator) အခွင့်အရေးဖြင့် Run ရန်
+
+  tasks:
+    - name: 1. Install Apache2
+      apt:
+        name: apache2
+        state: latest
+        update_cache: yes
+
+    - name: 2. Create a custom web page on each server
+      copy:
+        content: "<h1>Hello World! This is {{ inventory_hostname }} configured by Ansible!</h1>"
+        dest: /var/www/html/index.html
+
+    - name: 3. Ensure Apache is running and enabled
+      service:
+        name: apache2
+        state: started
+        enabled: yes
