@@ -1,7 +1,7 @@
 ---
 - name: Deploy Apache Web Server to Multi-Nodes
   hosts: webservers
-  become: true # Root (Administrator) အခွင့်အရေးဖြင့် Run ရန်
+  become: true # 
 
   tasks:
     - name: 1. Install Apache2
